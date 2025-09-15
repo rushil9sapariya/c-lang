@@ -4,5 +4,6 @@ int main() {
     int result1 = x++;
     printf("post increment = %d", result1);
     int result2 = ++x;
-    printf("pre increment = %d", result2)
+    printf("pre increment = %d", result2);
+
 }

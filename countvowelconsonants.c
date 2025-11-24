@@ -1,23 +1,37 @@
 #include <stdio.h>
-#include <string.h>
+#include <ctype.h>
 
-#define MAX_SIZE 100
+int main() {
+    char str[200];
+    int vowels = 0, consonants = 0, digits = 0, special = 0;
 
-int main() 
-{
-    char str[MAX_SIZE];
-    char reversed_str[MAX_SIZE];
-    int length = 0;
-    
     printf("Enter a string: ");
-    scanf("%99s", str);
-    length = strlen(str);
-    for (int i = length - 1, int j = 0; i >= 0; i--, j++) 
-    {
-        reversed_str[j] = str[i];
+    scanf("%s", str);   // Reads string without spaces
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = str[i];
+
+        if (isalpha(ch)) {
+            char lower = tolower(ch);
+            if (lower == 'a' || lower == 'e' || lower == 'i' ||
+                lower == 'o' || lower == 'u') {
+                vowels++;
+            } else {
+                consonants++;
+            }
+        }
+        else if (isdigit(ch)) {
+            digits++;
+        }
+        else {
+            special++;  // Any non-alphanumeric character
+        }
     }
-    reversed_str[length] = '\0';
-    strcpy(str, reversed_str);
-    printf("Reversed string: %s\n", str);
- return 0;
+
+    printf("\nVowels: %d\n", vowels);
+    printf("Consonants: %d\n", consonants);
+    printf("Digits: %d\n", digits);
+    printf("Special Characters: %d\n", special);
+
+    return 0;
 }
